@@ -8,6 +8,7 @@ module.exports = {
 	entry: path.join(__dirname, '../src/index.jsx'),
 	output: {
 		path: path.resolve(__dirname, '../dist'),
+		publicPath: "/",
 		filename: 'js/[name]-[hash:3].js',
 		clean: true,
 		assetModuleFilename: 'assets/[name]-[hash:3][ext]'
@@ -15,8 +16,13 @@ module.exports = {
 
 	devServer: {
 		port: 3000,
-		static: path.resolve(__dirname, '../dist'),
-		hot: true
+		static: {
+			directory: path.resolve(__dirname, 'dist'),
+		},		
+		hot: true,
+		historyApiFallback: {
+			disableDotRule: true,
+		  },
 	},
 	resolve: {
 		extensions: ['.js', '.jsx', '.ts', ".tsx"],

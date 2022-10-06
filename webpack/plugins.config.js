@@ -34,7 +34,7 @@ result.plugins = [
 			template: './src/index.html',
 			minify: buildType === constants.modes.dev ? false : true,
 			inject: 'body'
-		}),
+	}),
 	new MiniCssExtractPlugin({
 		filename: "style/[name]-[hash:3].css"
 	}),
@@ -108,6 +108,15 @@ result.module = {
 				}
 			}, ],
 			type: 'asset/resource'
+		},
+		{
+			test: /\.(mp4)$/,
+			use: {
+			  loader: "file-loader",
+			  options: {
+				name: "[name].[hash].[ext]"
+			  }
+			}
 		},
 		//Loading fonts
 		{
